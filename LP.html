@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Login</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        
+        .container {
+            max-width: 500px;
+            margin: 0 auto;
+            background: white;
+            padding: 25px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        
+        h1 {
+            text-align: center;
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+        
+        .form-group {
+            margin-bottom: 15px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        
+        input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        
+        input:focus {
+            outline: none;
+            border-color: #3498db;
+            box-shadow: 0 0 5px rgba(52, 152, 219, 0.5);
+        }
+        
+        button {
+            background-color: #3498db;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            width: 100%;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-top: 10px;
+        }
+        
+        button:hover {
+            background-color: #2980b9;
+        }
+        
+        .error {
+            color: #e74c3c;
+            font-size: 14px;
+            margin-top: 5px;
+            display: none;
+        }
+        
+        input.invalid {
+            border-color: #e74c3c;
+        }
+        
+        .success-message {
+            display: none;
+            text-align: center;
+            color: #27ae60;
+            margin: 20px 0;
+            font-weight: bold;
+        }
+        
+        .register-link {
+            text-align: center;
+            margin-top: 15px;
+        }
+        
+        .register-link a {
+            color: #3498db;
+            text-decoration: none;
+        }
+        
+        .register-link a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Student Login</h1>
+        
+        <div class="success-message" id="successMessage">
+            Login successful! Redirecting to dashboard...
+        </div>
+        
+        <form id="loginForm">
+            <div class="form-group">
+                <label for="loginEmail">Email *</label>
+                <input type="email" id="loginEmail" name="email" required>
+                <div class="error" id="emailError">Please enter your email</div>
+            </div>
+            
+            <div class="form-group">
+                <label for="loginPassword">Password *</label>
+                <input type="password" id="loginPassword" name="password" required>
+                <div class="error" id="passwordError">Please enter your password</div>
+                <div class="error" id="loginError">Invalid email or password</div>
+            </div>
+            
+            <button type="submit">Login</button>
+            
+            <div class="register-link">
+                Don't have an account? <a href="RP.html">Register here</a>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Reset errors
+            document.querySelectorAll('.error').forEach(el => {
+                el.style.display = 'none';
+            });
+            document.querySelectorAll('input').forEach(el => {
+                el.classList.remove('invalid');
+            });
+            
+            let isValid = true;
+            
+            // Validate email
+            const email = document.getElementById('loginEmail').value.trim();
+            if (email === '') {
+                document.getElementById('emailError').style.display = 'block';
+                document.getElementById('loginEmail').classList.add('invalid');
+                isValid = false;
+            }
+            
+            // Validate password
+            const password = document.getElementById('loginPassword').value;
+            if (password === '') {
+                document.getElementById('passwordError').style.display = 'block';
+                document.getElementById('loginPassword').classList.add('invalid');
+                isValid = false;
+            }
+            
+            // If form is valid, check credentials
+            if (isValid) {
+                const users = JSON.parse(localStorage.getItem('users')) || [];
+                const user = users.find(u => u.email === email && u.password === password);
+                
+                if (user) {
+                    // Store current user in session
+                    sessionStorage.setItem('currentUser', JSON.stringify(user));
+                    
+                    // Hide form and show success message
+                    document.getElementById('loginForm').style.display = 'none';
+                    document.getElementById('successMessage').style.display = 'block';
+                    
+                    // Redirect to dashboard after 2 seconds
+                    setTimeout(function() {
+                        window.location.href = "dashboard.html";
+                    }, 2000);
+                } else {
+                    document.getElementById('loginError').style.display = 'block';
+                    document.getElementById('loginEmail').classList.add('invalid');
+                    document.getElementById('loginPassword').classList.add('invalid');
+                }
+            }
+        });
+    </script>
+</body>
+</html>
