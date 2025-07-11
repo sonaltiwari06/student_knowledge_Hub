@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KNOWLEDGE HUB</title>
+    <style>
+        body {
+            font-style:normal;
+            font-size: 22px; /* Increased font size */
+            font-family:'Times New Roman', Times, serif;
+            font-weight: 540;
+            color: black;
+            border-color: antiquewhite;
+            background: url('bg.jpg') no-repeat;
+            background-size:cover;
+            margin:0;
+            padding: 0;
+            height:100%;
+        }
+        .container {
+            max-width: 800px;
+            margin: 50px auto;
+            text-align: center;
+           }
+        .header {
+            background: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
+        .navbar {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .navbar li {
+            display: inline-block;
+            margin-right: 20px;
+            position: relative;
+        }
+
+        .navbar li a {
+            text-decoration: none;
+            color: #333;
+            padding: 10px 15px;
+            border-radius: 5px;
+            margin: 10px;
+            transition: background-color 0.3s ease;
+        }
+
+        .navbar li a:hover {
+            background-color: #ddd;
+        }
+
+        .sub-menu {
+            display: none;
+            position: absolute;
+            background-color: #fff;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            padding: 10px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            z-index: 1;
+            top: calc(100% + 10px); 
+            left: 0;
+        }
+
+        .sub-menu li {
+            margin-bottom: 15px; /* Add spacing between each submenu item vertically */
+        }
+
+        .navbar li:hover .sub-menu {
+            display: block;
+        }
+
+        h1 {
+            font-size: 48px;
+            color: #333;
+        }
+        h1 span {
+            opacity: 0; 
+            display: inline-block;
+            margin-top: 30px;
+            font-family: 'Mistral';
+            font-size: 70px;
+            animation: smoke 2s linear infinite; 
+            -webkit-animation: smoke 2s linear infinite; 
+        }
+
+        @keyframes smoke {
+            0% {
+                opacity: 0;
+                transform: translateY(0px) rotate(0deg);
+            }
+            25% {
+                opacity: 0.5;
+                transform: translateY(-5px) rotate(5deg);
+            }
+            50% {
+                opacity: 1;
+                transform: translateY(-10px) rotate(-5deg);
+            }
+            75% {
+                opacity: 0.5;
+                transform: translateY(-5px) rotate(5deg);
+            }
+            100% {
+                opacity: 0;
+                transform: translateY(0px) rotate(0deg);
+            }
+        }
+
+        .symbol {
+            position: absolute;
+            top: 5px; /* Adjusted */
+            right: 5px; /* Adjusted */
+            font-size: 16px; /* Adjust as needed */
+        }
+        
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="symbol">
+            <img src="logo.png" height="120px">
+        </div>
+        <header class="header">
+            <ul class="navbar">
+                <li><a href="#" class="active">Portal</a>
+                    <ul class="sub-menu">
+                        <li><a href="RP.html">Registration_Profile</a></li>
+                        <li><a href="LP.html">Login_Profile</a></li>                   
+                   </ul>
+                   </li>
+                <li>
+                    <a href="#">SmartReadz</a>
+                    <ul class="sub-menu">
+                        <li><a href="AI.html">AI</a></li>
+                        <li><a href="News_Articles.html">News_Articles</a></li>
+                        <li><a href="Current_Affairs.html">Current_Affairs</a></li>
+                        <li><a href="CareerCue.html">CareerCue</a></li>
+                        <li><a href="Interview_Prep.html">Interview Prep</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#">Trendup</a>
+                    <ul class="sub-menu">
+                        <li><a href="Trending.html">Trending_Articles</a></li>
+                    </ul>
+                </li>
+                <li>
+                   <!----<a href="#">Cart</a>
+                    <ul class="sub-menu">
+                        <li><a href="Cart.html">AddtoCart</a></li>
+                    </ul>
+                </li>-->
+                <li>
+                    <a href="#">About Us</a>
+                    <ul class="sub-menu">
+                        <li><a href="aboutus.html">Motto</a></li>
+                        <li><a href="Contact_Us.html">Contact_Us</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </header>
+        <div class="container">
+            <h1>
+                <span>knowQuest</span>
+            </h1>
+        </div>
+    </div>
+</body>
+</html>
