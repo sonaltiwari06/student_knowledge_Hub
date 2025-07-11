@@ -1,0 +1,684 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CareerCue - Student Career Hub</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #4A6FA5;
+            --secondary: #166088;
+            --accent: #FF7E5F;
+            --dark: #2D3748;
+            --light: #F7FAFC;
+            --text: #2D3748;
+            --text-light: #718096;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #F7FAFC;
+            color: var(--text);
+            line-height: 1.6;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header Styles */
+        .career-header {
+            position: relative;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 80px 0;
+            text-align: center;
+            overflow: hidden;
+        }
+
+        .career-header h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .career-header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            position: relative;
+            z-index: 2;
+        }
+
+        .back-button {
+            position: absolute;
+            left: 30px;
+            top: 30px;
+            color: white;
+            font-size: 1.8rem;
+            text-decoration: none;
+            transition: all 0.3s;
+            background: rgba(255,255,255,0.2);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 10;
+        }
+
+        .back-button:hover {
+            transform: translateX(-5px);
+            background: rgba(255,255,255,0.3);
+        }
+
+        /* Navigation */
+        .career-nav {
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .career-nav ul {
+            display: flex;
+            list-style: none;
+            justify-content: center;
+        }
+
+        .career-nav li {
+            margin: 0 15px;
+        }
+
+        .career-nav a {
+            display: block;
+            padding: 20px 0;
+            color: var(--text);
+            text-decoration: none;
+            font-weight: 500;
+            position: relative;
+            transition: color 0.3s;
+        }
+
+        .career-nav a.active,
+        .career-nav a:hover {
+            color: var(--primary);
+        }
+
+        .career-nav a.active:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: var(--primary);
+        }
+
+        /* Search Box */
+        .career-search {
+            margin: 40px 0;
+        }
+
+        .search-box {
+            display: flex;
+            max-width: 600px;
+            margin: 0 auto;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            border-radius: 50px;
+            overflow: hidden;
+        }
+
+        .search-box input {
+            flex: 1;
+            padding: 15px 25px;
+            border: none;
+            outline: none;
+            font-size: 1rem;
+        }
+
+        .search-box button {
+            width: 60px;
+            background: var(--primary);
+            color: white;
+            border: none;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .search-box button:hover {
+            background: var(--secondary);
+        }
+
+        /* Featured Opportunities */
+        .career-featured {
+            margin: 60px 0;
+        }
+
+        .career-featured h2 {
+            text-align: center;
+            margin-bottom: 40px;
+            font-size: 2rem;
+            color: var(--dark);
+        }
+
+        .featured-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .opportunity-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .opportunity-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .opportunity-img {
+            height: 200px;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .opportunity-content {
+            padding: 25px;
+        }
+
+        .opportunity-content h3 {
+            margin-bottom: 15px;
+            color: var(--dark);
+        }
+
+        .opportunity-content p {
+            color: var(--text-light);
+            margin-bottom: 20px;
+            font-size: 0.95rem;
+        }
+
+        .opportunity-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.85rem;
+            color: var(--text-light);
+        }
+
+        .apply-btn {
+            display: inline-block;
+            padding: 8px 20px;
+            background: var(--primary);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            transition: background 0.3s;
+        }
+
+        .apply-btn:hover {
+            background: var(--secondary);
+        }
+
+        /* Resources Section */
+        .career-resources {
+            margin: 80px 0;
+        }
+
+        .career-resources h2 {
+            text-align: center;
+            margin-bottom: 40px;
+            font-size: 2rem;
+            color: var(--dark);
+        }
+
+        .resource-tabs {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 30px;
+        }
+
+        .tab-btn {
+            padding: 12px 25px;
+            background: none;
+            border: none;
+            border-bottom: 3px solid transparent;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .tab-btn.active {
+            color: var(--primary);
+            border-bottom-color: var(--primary);
+            font-weight: 600;
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        .resource-list {
+            background: white;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .resource-item {
+            display: flex;
+            align-items: center;
+            padding: 15px 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .resource-item:last-child {
+            border-bottom: none;
+        }
+
+        .resource-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 20px;
+            font-size: 1.2rem;
+        }
+
+        .resource-info h4 {
+            margin-bottom: 5px;
+            color: var(--dark);
+        }
+
+        .resource-info p {
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+
+        .resource-link {
+            margin-left: auto;
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .resource-link:hover {
+            color: var(--secondary);
+        }
+
+        /* Footer */
+        .career-footer {
+            background: var(--dark);
+            color: white;
+            padding: 40px 0;
+            text-align: center;
+        }
+
+        .career-footer p {
+            margin-bottom: 20px;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .social-links a {
+            color: white;
+            font-size: 1.2rem;
+            transition: color 0.3s;
+        }
+
+        .social-links a:hover {
+            color: var(--accent);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .career-header h1 {
+                font-size: 2.2rem;
+            }
+
+            .back-button {
+                left: 15px;
+                top: 15px;
+                font-size: 1.5rem;
+                width: 40px;
+                height: 40px;
+            }
+
+            .career-nav ul {
+                flex-wrap: wrap;
+            }
+
+            .career-nav li {
+                margin: 0 10px;
+            }
+
+            .featured-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .tab-btn {
+                padding: 10px 15px;
+                font-size: 0.9rem;
+            }
+        }
+
+        /* Animation */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .fade-in {
+            animation: fadeIn 0.6s ease-out forwards;
+        }
+    </style>
+</head>
+<body>
+    <header class="career-header">
+        <a href="index.html" class="back-button">
+            <i class="fas fa-arrow-left"></i>
+        </a>
+        <div class="container">
+            <h1>CareerCue</h1>
+            <p>Your personalized career guidance platform</p>
+        </div>
+    </header>
+
+    <nav class="career-nav">
+        <div class="container">
+            <ul>
+                <li><a href="#" class="active" data-category="all">All Opportunities</a></li>
+                <li><a href="#" data-category="internships">Internships</a></li>
+                <li><a href="#" data-category="jobs">Entry-Level Jobs</a></li>
+                <li><a href="#" data-category="workshops">Workshops</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="container">
+        <section class="career-search">
+            <div class="search-box">
+                <input type="text" placeholder="Search career opportunities..." id="search-input">
+                <button id="search-btn"><i class="fas fa-search"></i></button>
+            </div>
+        </section>
+
+        <section class="career-featured">
+            <h2>Featured Opportunities</h2>
+            <div class="featured-grid" id="featured-opportunities">
+                <!-- Opportunities will be loaded here by JavaScript -->
+            </div>
+        </section>
+
+        <section class="career-resources">
+            <h2>Career Resources</h2>
+            <div class="resource-tabs">
+                <button class="tab-btn active" data-tab="guidance">Career Guidance</button>
+                <button class="tab-btn" data-tab="resume">Resume Tools</button>
+                <button class="tab-btn" data-tab="interview">Interview Prep</button>
+            </div>
+            <div class="tab-content active" id="guidance">
+                <div class="resource-list" id="guidance-list">
+                    <!-- Guidance resources will be loaded here -->
+                </div>
+            </div>
+            <div class="tab-content" id="resume">
+                <div class="resource-list" id="resume-list">
+                    <!-- Resume tools will be loaded here -->
+                </div>
+            </div>
+            <div class="tab-content" id="interview">
+                <div class="resource-list" id="interview-list">
+                    <!-- Interview prep will be loaded here -->
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="career-footer">
+        <div class="container">
+            <p>&copy; 2025 CareerCue. Empowering student careers.</p>
+            <div class="social-links">
+                <a href="#"><i class="fab fa-linkedin"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Sample data for opportunities
+            const opportunities = [
+                {
+                    id: 1,
+                    title: "Summer Internship Program",
+                    description: "Paid internship opportunity for CS students at leading tech company",
+                    category: "internships",
+                    image: "https://source.unsplash.com/random/600x400/?office,internship",
+                    deadline: "May 30, 2025",
+                    link: "#",
+                    type: "Full-time"
+                },
+                {
+                    id: 2,
+                    title: "Entry-Level Software Engineer",
+                    description: "Recent graduate position with comprehensive training program",
+                    category: "jobs",
+                    image: "https://source.unsplash.com/random/600x400/?software,developer",
+                    deadline: "June 15, 2025",
+                    link: "#",
+                    type: "Full-time"
+                },
+                
+                {
+                    id: 4,
+                    title: "Career Development Workshop",
+                    description: "Free workshop on resume building and interview techniques",
+                    category: "workshops",
+                    image: "https://source.unsplash.com/random/600x400/?workshop,career",
+                    date: "June 5, 2025",
+                    link: "#",
+                    type: "Workshop"
+                }
+            ];
+
+            // Sample data for resources
+            const resources = {
+                guidance: [
+                    {
+                        title: "Career Path Assessment",
+                        description: "Take our quiz to discover careers matching your skills",
+                        link: "#",
+                        icon: "fas fa-chart-line"
+                    },
+                    {
+                        title: "Industry Outlook Reports",
+                        description: "Latest data on growing fields and in-demand skills",
+                        link: "#",
+                        icon: "fas fa-file-alt"
+                    }
+                ],
+                resume: [
+                    {
+                        title: "Resume Builder Tool",
+                        description: "Create a professional resume in minutes with our builder",
+                        link: "#",
+                        icon: "fas fa-file-contract"
+                    },
+                    {
+                        title: "ATS Optimization Guide",
+                        description: "Learn how to make your resume pass automated systems",
+                        link: "#",
+                        icon: "fas fa-robot"
+                    }
+                ],
+                interview: [
+                    {
+                        title: "Common Interview Questions",
+                        description: "Practice with 100+ frequently asked interview questions",
+                        link: "#",
+                        icon: "fas fa-comments"
+                    },
+                    {
+                        title: "Virtual Interview Simulator",
+                        description: "AI-powered practice for your upcoming interviews",
+                        link: "#",
+                        icon: "fas fa-video"
+                    }
+                ]
+            };
+
+            // DOM Elements
+            const featuredOpportunitiesEl = document.getElementById('featured-opportunities');
+            const navLinks = document.querySelectorAll('.career-nav a');
+            const tabButtons = document.querySelectorAll('.tab-btn');
+            const tabContents = document.querySelectorAll('.tab-content');
+            const searchInput = document.getElementById('search-input');
+            const searchBtn = document.getElementById('search-btn');
+
+            // Current filter state
+            let currentCategory = 'all';
+            let currentSearchTerm = '';
+
+            // Initialize the page
+            function initPage() {
+                renderOpportunities();
+                renderResources();
+                setupEventListeners();
+            }
+
+            // Render opportunities based on current filters
+            function renderOpportunities() {
+                featuredOpportunitiesEl.innerHTML = '';
+
+                const filteredOpportunities = opportunities.filter(opportunity => {
+                    const matchesCategory = currentCategory === 'all' || opportunity.category === currentCategory;
+                    const matchesSearch = opportunity.title.toLowerCase().includes(currentSearchTerm.toLowerCase()) || 
+                                          opportunity.description.toLowerCase().includes(currentSearchTerm.toLowerCase());
+                    return matchesCategory && matchesSearch;
+                });
+
+                if (filteredOpportunities.length === 0) {
+                    featuredOpportunitiesEl.innerHTML = '<p class="no-results">No opportunities found matching your criteria.</p>';
+                    return;
+                }
+
+                filteredOpportunities.forEach((opportunity, index) => {
+                    const opportunityEl = document.createElement('div');
+                    opportunityEl.className = 'opportunity-card fade-in';
+                    opportunityEl.style.animationDelay = `${index * 0.1}s`;
+                    
+                    opportunityEl.innerHTML = `
+                        <div class="opportunity-img" style="background-image: url('${opportunity.image}')"></div>
+                        <div class="opportunity-content">
+                            <h3>${opportunity.title}</h3>
+                            <p>${opportunity.description}</p>
+                            <div class="opportunity-meta">
+                                <span>${opportunity.deadline || opportunity.date} • ${opportunity.type}</span>
+                                <a href="${opportunity.link}" class="apply-btn">Apply</a>
+                            </div>
+                        </div>
+                    `;
+                    featuredOpportunitiesEl.appendChild(opportunityEl);
+                });
+            }
+
+            // Render resources
+            function renderResources() {
+                Object.keys(resources).forEach(type => {
+                    const container = document.getElementById(`${type}-list`);
+                    if (!container) return;
+
+                    container.innerHTML = '';
+                    resources[type].forEach(resource => {
+                        const resourceEl = document.createElement('div');
+                        resourceEl.className = 'resource-item';
+                        resourceEl.innerHTML = `
+                            <div class="resource-icon">
+                                <i class="${resource.icon}"></i>
+                            </div>
+                            <div class="resource-info">
+                                <h4>${resource.title}</h4>
+                                <p>${resource.description}</p>
+                            </div>
+                            <a href="${resource.link}" class="resource-link">View</a>
+                        `;
+                        container.appendChild(resourceEl);
+                    });
+                });
+            }
+
+            // Set up event listeners
+            function setupEventListeners() {
+                // Navigation filtering
+                navLinks.forEach(link => {
+                    link.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        navLinks.forEach(l => l.classList.remove('active'));
+                        this.classList.add('active');
+                        currentCategory = this.dataset.category;
+                        renderOpportunities();
+                    });
+                });
+
+                // Tab switching
+                tabButtons.forEach(button => {
+                    button.addEventListener('click', function() {
+                        tabButtons.forEach(btn => btn.classList.remove('active'));
+                        tabContents.forEach(content => content.classList.remove('active'));
+                        this.classList.add('active');
+                        document.getElementById(this.dataset.tab).classList.add('active');
+                    });
+                });
+
+                // Search functionality
+                searchBtn.addEventListener('click', function() {
+                    currentSearchTerm = searchInput.value.trim();
+                    renderOpportunities();
+                });
+
+                searchInput.addEventListener('keyup', function(e) {
+                    if (e.key === 'Enter') {
+                        currentSearchTerm = searchInput.value.trim();
+                        renderOpportunities();
+                    }
+                });
+            }
+
+            // Initialize the page
+            initPage();
+        });
+    </script>
+</body>
+</html>
