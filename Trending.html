@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trending Questions</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f5f7fa;
+            color: #333;
+            line-height: 1.6;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            position: relative;
+        }
+        
+        .back-button {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background: #2c3e50;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: background 0.3s;
+            text-decoration: none;
+        }
+        
+        .back-button:hover {
+            background: #1a252f;
+        }
+        
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #2c3e50;
+            padding-top: 10px;
+        }
+        
+        .topics-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+        
+        .topic-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+        
+        .topic-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .topic-header {
+            padding: 20px;
+            background: linear-gradient(135deg, #3498db, #2c3e50);
+            color: white;
+        }
+        
+        .topic-header h2 {
+            margin: 0;
+            font-size: 1.5rem;
+        }
+        
+        .questions-list {
+            padding: 20px;
+        }
+        
+        .question-item {
+            padding: 10px 0;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .question-item:last-child {
+            border-bottom: none;
+        }
+        
+        .question-item a {
+            color: #3498db;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        .question-item a:hover {
+            color: #2980b9;
+            text-decoration: underline;
+        }
+        
+        .view-all {
+            display: block;
+            text-align: center;
+            margin-top: 15px;
+            color: #7f8c8d;
+            font-size: 0.9rem;
+        }
+        
+        @media (max-width: 768px) {
+            .topics-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .back-button {
+                position: static;
+                margin-bottom: 20px;
+                display: inline-block;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="index.html" class="back-button">← Back</a>
+        <h1>Trending Questions</h1>
+        
+        <div class="topics-container">
+            <!-- AI Topic -->
+            <div class="topic-card">
+                <div class="topic-header">
+                    <h2>AI</h2>
+                </div>
+                <div class="questions-list">
+                    <div class="question-item">
+                        <a href="#">What are the ethical implications of generative AI?</a>
+                    </div>
+                    <div class="question-item">
+                        <a href="#">How is AI transforming healthcare diagnostics?</a>
+                    </div>
+                    <div class="question-item">
+                        <a href="#">What are the limitations of current large language models?</a>
+                    </div>
+                    <a href="#" class="view-all">View all AI questions →</a>
+                </div>
+            </div>
+            
+            <!-- News Articles Topic -->
+            <div class="topic-card">
+                <div class="topic-header" style="background: linear-gradient(135deg, #e74c3c, #c0392b);">
+                    <h2>News Articles</h2>
+                </div>
+                <div class="questions-list">
+                    <div class="question-item">
+                        <a href="#">How do fact-checkers verify viral news stories?</a>
+                    </div>
+                    <div class="question-item">
+                        <a href="#">What makes a news article credible and trustworthy?</a>
+                    </div>
+                    <div class="question-item">
+                        <a href="#">How has social media changed news consumption?</a>
+                    </div>
+                    <a href="#" class="view-all">View all News questions →</a>
+                </div>
+            </div>
+            
+            <!-- Current Affairs Topic -->
+            <div class="topic-card">
+                <div class="topic-header" style="background: linear-gradient(135deg, #2ecc71, #27ae60);">
+                    <h2>Current Affairs</h2>
+                </div>
+                <div class="questions-list">
+                    <div class="question-item">
+                        <a href="#">What are the key issues in the upcoming elections?</a>
+                    </div>
+                    <div class="question-item">
+                        <a href="#">How is climate change affecting global economies?</a>
+                    </div>
+                    <div class="question-item">
+                        <a href="#">What are the latest developments in space exploration?</a>
+                    </div>
+                    <a href="#" class="view-all">View all Current Affairs →</a>
+                </div>
+            </div>
+            
+            <!-- CareerCue Topic -->
+            <div class="topic-card">
+                <div class="topic-header" style="background: linear-gradient(135deg, #9b59b6, #8e44ad);">
+                    <h2>CareerCue</h2>
+                </div>
+                <div class="questions-list">
+                    <div class="question-item">
+                        <a href="#">What skills are most in-demand for remote jobs?</a>
+                    </div>
+                    <div class="question-item">
+                        <a href="#">How to negotiate salary for a new position?</a>
+                    </div>
+                    <div class="question-item">
+                        <a href="#">What are effective strategies for career pivots?</a>
+                    </div>
+                    <a href="#" class="view-all">View all Career questions →</a>
+                </div>
+            </div>
+            
+            <!-- Interview Prep Topic -->
+            <div class="topic-card">
+                <div class="topic-header" style="background: linear-gradient(135deg, #f39c12, #d35400);">
+                    <h2>Interview Prep</h2>
+                </div>
+                <div class="questions-list">
+                    <div class="question-item">
+                        <a href="#">What are the most common behavioral interview questions?</a>
+                    </div>
+                    <div class="question-item">
+                        <a href="#">How to prepare for technical coding interviews?</a>
+                    </div>
+                    <div class="question-item">
+                        <a href="#">What to do when you don't know an interview answer?</a>
+                    </div>
+                    <a href="#" class="view-all">View all Interview questions →</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
